@@ -58,7 +58,7 @@ TEST(task, test7) {
     testing::internal::CaptureStdout();
     automata.cancel();
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_NE(output.find("Заказ отменён, возврат: 200"), std::string::npos);
+    EXPECT_NE(output.find("Order cancelled, refund: 200"), std::string::npos);
     EXPECT_EQ(automata.getState(), WAIT);
 }
 
