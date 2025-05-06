@@ -2,20 +2,13 @@
 #ifndef INCLUDE_AUTOMATA_H_
 #define INCLUDE_AUTOMATA_H_
 
-#include <string>
 #include <vector>
+#include <string>
 
 using std::vector;
 using std::string;
 
-enum STATES {
-    OFF,
-    WAITING,
-    ACCEPTING,
-    SELECTION,
-    DISPENSING,
-    FINISHED
-};
+enum class STATES { OFF, WAITING, ACCEPTING, SELECTION, DISPENSING, FINISHED };
 
 class Automata {
 private:
