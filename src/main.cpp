@@ -29,8 +29,7 @@ int main() {
     if (machine.check()) {
         machine.cook();
         machine.finish();
-    }
-    else {
+    } else {
         machine.cancel();
     }
 

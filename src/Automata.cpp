@@ -14,8 +14,7 @@ void Automata::on() {
     if (state == STATES::OFF) {
         state = STATES::WAITING;
         std::cout << "The machine is on" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }
@@ -24,8 +23,7 @@ void Automata::off() {
     if (state == STATES::WAITING) {
         state = STATES::OFF;
         std::cout << "The machine is off" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }
@@ -36,8 +34,7 @@ void Automata::coin(int amount) {
         state = STATES::ACCEPTING;
         std::cout << "You deposited " << amount
             << ", Current balance: " << cash << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }
@@ -60,12 +57,10 @@ void Automata::choice(int index) {
             selected_drink = index;
             state = STATES::SELECTION;
             std::cout << "You have chosen: " << menu[index] << std::endl;
-        }
-        else {
+        } else {
             std::cout << "Incorrect drink index" << std::endl;
         }
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }
@@ -76,13 +71,11 @@ bool Automata::check() {
             std::cout << "There is enough money, preparations begin"
                 << std::endl;
             return true;
-        }
-        else {
+        } else {
             std::cout << "Not enough money" << std::endl;
             return false;
         }
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
         return false;
     }
@@ -94,8 +87,7 @@ void Automata::cancel() {
         cash = 0;
         selected_drink = -1;
         state = STATES::WAITING;
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }
@@ -105,8 +97,7 @@ void Automata::cook() {
         state = STATES::DISPENSING;
         std::cout << "Preparing the drink: "
             << menu[selected_drink] << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }
@@ -121,8 +112,7 @@ void Automata::finish() {
         cash = 0;
         selected_drink = -1;
         state = STATES::WAITING;
-    }
-    else {
+    } else {
         std::cout << "Incorrect state" << std::endl;
     }
 }

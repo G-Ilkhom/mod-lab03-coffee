@@ -11,14 +11,14 @@ using std::string;
 enum class STATES { OFF, WAITING, ACCEPTING, SELECTION, DISPENSING, FINISHED };
 
 class Automata {
-private:
+  private:
     int cash;
     vector<string> menu;
     vector<int> prices;
     STATES state;
     int selected_drink;
-
-public:
+  
+  public:
     Automata();
     void on();
     void off();
