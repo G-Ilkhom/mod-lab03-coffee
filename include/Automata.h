@@ -17,7 +17,7 @@ class Automata {
     vector<int> prices;
     STATES state;
     int selected_drink;
-    
+
  public:
     Automata();
     void on();
