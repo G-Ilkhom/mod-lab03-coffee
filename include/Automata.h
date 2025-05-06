@@ -5,12 +5,15 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 enum STATES {
     OFF,
-    WAIT,
-    ACCEPT,
-    CHECK,
-    COOK
+    WAITING,
+    ACCEPTING,
+    SELECTION,
+    DISPENSING,
+    FINISHED
 };
 
 class Automata {
@@ -19,20 +22,23 @@ class Automata {
     std::vector<std::string> menu;
     std::vector<int> prices;
     STATES state;
-    int currentDrink;
+    int selected_drink;
 
  public:
     Automata();
-    STATES getState();
-    void getMenu();
     void on();
     void off();
-    void coin(int);
+    void coin(int amount);
+    STATES getState();
+    void getMenu();
+    void choice(int index);
+    bool check();
     void cancel();
-    void choice(int);
-    void check();
     void cook();
     void finish();
+    int getCash();
+    int getSelectedDrink();
+    int getPrice(int index);
 };
 
 #endif  // INCLUDE_AUTOMATA_H_
