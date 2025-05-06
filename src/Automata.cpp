@@ -1,6 +1,6 @@
 //"Copyright 2025 Owner"
-#include <iostream>
 #include "Automata.h"
+#include <iostream>
 
 Automata::Automata()
     : cash(0),
@@ -13,20 +13,20 @@ Automata::Automata()
 void Automata::on() {
     if (state == STATES::OFF) {
         state = STATES::WAITING;
-        cout << "The machine is on" << endl;
+        std::cout << "The machine is on" << std::endl;
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
 void Automata::off() {
     if (state == STATES::WAITING) {
         state = STATES::OFF;
-        cout << "The machine is off" << endl;
+        std::cout << "The machine is off" << std::endl;
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
@@ -34,10 +34,11 @@ void Automata::coin(int amount) {
     if (state == STATES::WAITING || state == STATES::ACCEPTING) {
         cash += amount;
         state = STATES::ACCEPTING;
-        cout << "You deposited " << amount << ", Current balance: " << cash << endl;
+        std::cout << "You deposited " << amount
+            << ", Current balance: " << cash << std::endl;
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
@@ -46,80 +47,83 @@ STATES Automata::getState() {
 }
 
 void Automata::getMenu() {
-    cout << "Menu:" << endl;
-    for (int i = 0; i < (int)menu.size(); ++i) {
-        cout << i << ": " << menu[i] << " - " << prices[i] << endl;
+    std::cout << "Menu:" << std::endl;
+    for (int i = 0; i < static_cast<int>(menu.size()); ++i) {
+        std::cout << i << ": " << menu[i]
+            << " - " << prices[i] << std::endl;
     }
 }
 
 void Automata::choice(int index) {
     if (state == STATES::ACCEPTING) {
-        if (index >= 0 && index < (int)menu.size()) {
+        if (index >= 0 && index < static_cast<int>(menu.size())) {
             selected_drink = index;
             state = STATES::SELECTION;
-            cout << "You have chosen: " << menu[index] << endl;
+            std::cout << "You have chosen: " << menu[index] << std::endl;
         }
         else {
-            cout << "Incorrect drink index" << endl;
+            std::cout << "Incorrect drink index" << std::endl;
         }
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
 bool Automata::check() {
     if (state == STATES::SELECTION) {
         if (cash >= prices[selected_drink]) {
-            cout << "There is enough money, preparations begin" << endl;
+            std::cout << "There is enough money, preparations begin"
+                << std::endl;
             return true;
         }
         else {
-            cout << "Not enough money" << endl;
+            std::cout << "Not enough money" << std::endl;
             return false;
         }
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
         return false;
     }
 }
 
 void Automata::cancel() {
     if (state == STATES::ACCEPTING || state == STATES::SELECTION) {
-        cout << "Order cancelled, refund: " << cash << endl;
+        std::cout << "Order cancelled, refund: " << cash << std::endl;
         cash = 0;
         selected_drink = -1;
         state = STATES::WAITING;
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
 void Automata::cook() {
     if (state == STATES::SELECTION) {
         state = STATES::DISPENSING;
-        cout << "Preparing the drink: " << menu[selected_drink] << endl;
+        std::cout << "Preparing the drink: "
+            << menu[selected_drink] << std::endl;
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
 void Automata::finish() {
     if (state == STATES::DISPENSING) {
-        cout << "The drink is ready" << endl;
+        std::cout << "The drink is ready" << std::endl;
         int change = cash - prices[selected_drink];
         if (change > 0) {
-            cout << "Your change is: " << change << endl;
+            std::cout << "Your change is: " << change << std::endl;
         }
         cash = 0;
         selected_drink = -1;
         state = STATES::WAITING;
     }
     else {
-        cout << "Incorrect state" << endl;
+        std::cout << "Incorrect state" << std::endl;
     }
 }
 
@@ -132,11 +136,9 @@ int Automata::getSelectedDrink() {
 }
 
 int Automata::getPrice(int index) {
-    if (index >= 0 && index < (int)prices.size()) {
+    if (index >= 0 && index < static_cast<int>(prices.size())) {
         return prices[index];
     }
-    else {
-        cout << "Incorrect index" << endl;
-        return 0;
-    }
+    std::cout << "Incorrect index" << std::endl;
+    return 0;
 }

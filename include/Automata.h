@@ -5,7 +5,8 @@
 #include <string>
 #include <vector>
 
-using namespace std;
+using std::vector;
+using std::string;
 
 enum STATES {
     OFF,
@@ -17,14 +18,14 @@ enum STATES {
 };
 
 class Automata {
- private:
+private:
     int cash;
-    std::vector<std::string> menu;
-    std::vector<int> prices;
+    vector<string> menu;
+    vector<int> prices;
     STATES state;
     int selected_drink;
 
- public:
+public:
     Automata();
     void on();
     void off();

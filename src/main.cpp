@@ -3,34 +3,39 @@
 #include "Automata.h"
 
 int main() {
-    Automata automata;
-    cout << "Initial state: " << static_cast<int>(automata.getState()) << endl;
+    Automata machine;
+    std::cout << "Initial state: "
+        << static_cast<int>(machine.getState()) << std::endl;
 
-    automata.on();
-    cout << "State after on(): " << static_cast<int>(automata.getState()) << endl;
+    machine.on();
+    std::cout << "State after on(): "
+        << static_cast<int>(machine.getState()) << std::endl;
 
-    automata.getMenu();
+    machine.getMenu();
 
-    automata.coin(200);
-    cout << "Balance after coin(200): " << automata.getCash() << endl;
+    machine.coin(200);
+    std::cout << "Balance after coin(200): "
+        << machine.getCash() << std::endl;
 
-    cout << "Attempting invalid selection -1:" << endl;
-    automata.choice(-1);
+    std::cout << "Attempting invalid selection -1:" << std::endl;
+    machine.choice(-1);
 
-    cout << "Choosing valid drink 1:" << endl;
-    automata.choice(1);
-    cout << "State after choice(1): " << static_cast<int>(automata.getState()) << endl;
+    std::cout << "Choosing valid drink 1:" << std::endl;
+    machine.choice(1);
+    std::cout << "State after choice(1): "
+        << static_cast<int>(machine.getState()) << std::endl;
 
-    cout << "Checking funds:" << endl;
-    if (automata.check()) {
-        automata.cook();
-        automata.finish();
+    std::cout << "Checking funds:" << std::endl;
+    if (machine.check()) {
+        machine.cook();
+        machine.finish();
     }
     else {
-        automata.cancel();
+        machine.cancel();
     }
 
-    automata.off();
-    cout << "State after off(): " << static_cast<int>(automata.getState()) << endl;
+    machine.off();
+    std::cout << "State after off(): "
+        << static_cast<int>(machine.getState()) << std::endl;
     return 0;
 }
